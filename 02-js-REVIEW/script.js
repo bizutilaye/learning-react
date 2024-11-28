@@ -156,3 +156,5 @@ console.log(author, title, genres);
 const [primaryGener, secondaryGener] = genres;
 
 console.log(primaryGener, secondaryGener);
+
+const summary = `${title}`, is abook;
