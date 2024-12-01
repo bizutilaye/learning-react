@@ -69,17 +69,12 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <div>
+      <ul className="pizzas">
         {pizzaData.map((pizza) => (
           // Corrected: Capitalize Pizza when using it
-          <Pizza
-            key={pizza.name}
-            name={pizza.name}
-            photoName={pizza.photoName}
-            ingredients={pizza.ingredients}
-          />
+          <Pizza pizzaObj={pizza} key={pizza.name} />
         ))}
-      </div>
+      </ul>
       {/* <Pizza
         name="pizza spinach"
         ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
@@ -99,11 +94,13 @@ function Menu() {
 
 function Pizza(props) {
   return (
-    <div>
-      <img src={props.photoName} alt={props.name} />
-      <h3>Pizza Spinaci </h3>
-      <p>{props.ingredients}</p>
-    </div>
+    <li className="pizzza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <div>
+        <h3>Pizza Spinaci </h3>
+        <p>{props.pizzaObj.ingredients}</p>
+      </div>
+    </li>
   );
 }
 
