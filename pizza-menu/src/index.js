@@ -69,10 +69,41 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <div>
+        {pizzaData.map((pizza) => (
+          // Corrected: Capitalize Pizza when using it
+          <Pizza
+            key={pizza.name}
+            name={pizza.name}
+            photoName={pizza.photoName}
+            ingredients={pizza.ingredients}
+          />
+        ))}
+      </div>
+      {/* <Pizza
+        name="pizza spinach"
+        ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
+        price={12}
+        photoName="pizzas/spinaci.jpg"
+      />
+      <Pizza
+        name="Pizza Funghi"
+        ingredients="Tomato, mozarella, mushrooms, and onion"
+        price={1}
+        photoName="pizzas/funghi.jpg"
+      />
+      <Pizza /> */}
     </main>
+  );
+}
+
+function Pizza(props) {
+  return (
+    <div>
+      <img src={props.photoName} alt={props.name} />
+      <h3>Pizza Spinaci </h3>
+      <p>{props.ingredients}</p>
+    </div>
   );
 }
 
@@ -89,15 +120,6 @@ function Footer() {
   );
 }
 
-function Pizza() {
-  return (
-    <div>
-      <img src="pizzas/spinaci.jpg" alt="pizza spinaci" />
-      <h3>Pizza Spinaci </h3>
-      <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
-    </div>
-  );
-}
 const root = ReactDom.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
