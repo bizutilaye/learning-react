@@ -66,15 +66,20 @@ function Header() {
 }
 
 function Menu() {
+  const pizzas = pizzaData;
+  const numPizzas = pizzas.length;
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => (
-          // Corrected: Capitalize Pizza when using it
-          <Pizza pizzaObj={pizza} key={pizza.name} />
-        ))}
-      </ul>
+      {numPizzas > 0 && (
+        <ul className="pizzas">
+          {pizzaData.map((pizza) => (
+            // Corrected: Capitalize Pizza when using it
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )}
+
       {/* <Pizza
         name="pizza spinach"
         ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
@@ -112,7 +117,12 @@ function Footer() {
   console.log(isOpen);
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()} We are currently open
+      {isOpen && (
+        <div className="order">
+          <p>we're open until {closeHour} :00. Come visit us or order online</p>
+          <button className="btn">order</button>
+        </div>
+      )}
     </footer>
   );
 }
