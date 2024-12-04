@@ -1,12 +1,3 @@
-/* 
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
-];
-*/
-
-@import url("https://fonts.googleapis.com/css2?family=Monoton&family=Quicksand:wght@500;700&display=swap");
-
 * {
   margin: 0;
   padding: 0;
@@ -19,23 +10,24 @@ html {
 
 body {
   font-size: 2.4rem;
-  font-family: sans-serif;
+  font-family: "Quicksand", sans-serif;
   color: #5a3e2b;
-  font-family: "Quicksand";
-  font-weight: 500;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: auto; /* Ensure vertical scrolling only if needed */
 }
 
 .app {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh; /* Ensure it always covers the viewport */
   display: grid;
   grid-template-rows: auto auto 1fr auto;
+  overflow: hidden; /* Prevent scroll on the main container */
 }
 
 h1 {
   text-align: center;
   background-color: #f4a226;
-  font-family: "Monoton";
+  font-family: "Monoton", cursive;
   font-size: 8rem;
   text-transform: uppercase;
   font-weight: 400;
@@ -81,28 +73,20 @@ input {
   background-color: #5a3e2b;
   color: #ffebb3;
   padding: 4rem 0;
-
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   gap: 3.2rem;
   align-items: center;
-}
-
-.actions button,
-.list select {
-  text-transform: uppercase;
-  padding: 0.8rem 2.4rem;
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin: 0 0.8rem;
+  overflow-y: auto; /* Allow scrolling only if content overflows */
+  max-height: 80vh; /* Set a max height to prevent overflow */
 }
 
 .list ul {
   list-style: none;
   width: 80%;
-  overflow: scroll;
-
+  overflow-y: auto; /* Scroll if the list exceeds the container */
+  max-height: 60vh; /* Set the max height to avoid excess scroll */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.2rem;
@@ -114,6 +98,7 @@ input {
   display: flex;
   align-items: center;
   gap: 1.2rem;
+  padding: 1.2rem;
 }
 
 input[type="checkbox"] {
@@ -131,9 +116,89 @@ input[type="checkbox"] {
   transform: translateY(2px);
 }
 
+.list li button:hover {
+  background-color: #6fbaa0;
+  transition: background-color 0.3s ease;
+}
+
 .stats {
   background-color: #76c7ad;
   text-align: center;
   font-weight: 700;
   padding: 3.2rem 0;
+}
+
+/* Mobile specific styles */
+@media (max-width: 600px) {
+  /* Adjust the header size for small screens */
+  h1 {
+    font-size: 5rem; /* Reduce font size */
+    padding: 1.6rem 0;
+  }
+
+  /* Ensure the form inputs are responsive */
+  .add-form {
+    flex-direction: column; /* Stack the form items vertically */
+    padding: 1.6rem 0;
+  }
+
+  .add-form button,
+  .add-form input,
+  .add-form select {
+    background-color: #ffebb3;
+    color: #5a3e2b;
+    font-family: inherit;
+    border: none;
+    border-radius: 10rem;
+    padding: 1.2rem 3.2rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  /* List section adjustments */
+  .list {
+    max-height: 70vh; /* Reduce max height to make it more mobile-friendly */
+  }
+
+  .list ul {
+    width: 100%; /* Use full width for the list */
+    max-height: 50vh; /* Ensure the list doesn't overflow */
+  }
+
+  /* Make list items more spacious on mobile */
+  .list li {
+    gap: 1rem; /* Reduce gap between items */
+    padding: 1rem; /* Adjust padding */
+  }
+
+  /* Ensure the stats section is properly aligned */
+  .stats {
+    padding: 2rem 0; /* Reduce padding for smaller screens */
+  }
+}
+
+/* Styling for the select element */
+.add-form select {
+  background-color: #ffebb3; /* Lighter background color for the select */
+  color: #5a3e2b; /* Dark text color for visibility */
+  font-size: 1.8rem;
+  font-family: inherit;
+  border: none;
+  border-radius: 10rem;
+  padding: 1.2rem 3.2rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Optional: Style for the option elements */
+.add-form select option {
+  background-color: #ffebb3; /* Ensure background color is consistent */
+  color: #5a3e2b; /* Dark text color for the options */
+}
+
+/* Focused state for the select element */
+.add-form select:focus {
+  outline: none;
+  border: 2px solid #76c7ad; /* Highlight the select element on focus */
 }
